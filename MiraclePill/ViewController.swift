@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
     @IBOutlet var statePicker: UIPickerView!
     @IBOutlet var statePickerButton: UIButton!
@@ -103,6 +103,16 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         statePickerButton.setTitle(states[row], for: .normal)
         statePicker.isHidden = true
     }
-
+    
+    // MARK: - UITextFieldDelegate protocol method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Dismissing keyboard with background tap
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
 }
 
